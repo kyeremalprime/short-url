@@ -6,13 +6,13 @@
     function JudgeShortUrl($short_url) {
         include 'config.php';
         $db = new PDO('mysql:host=' . $mysql_dbhost . ';dbname=' . $mysql_dbname . ';port=' . $mysql_dbport, $mysql_dbuser, $mysql_dbpassword);
-		$db ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
-		$db ->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC );
-		$sql = $db->prepare('SELECT * FROM rnyz_urlinfo WHERE short_url = "'.$short_url.'"');
+	$db ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
+	$db ->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC );
+	$sql = $db->prepare('SELECT * FROM ' . $mysql_table . ' WHERE short_url = "'.$short_url.'"');
         $sql->execute();
         $res = $sql->fetch(PDO::FETCH_ASSOC);
-		$db = null;
-		return (is_array($res)) ? true : false;
+	$db = null;
+	return (is_array($res)) ? true : false;
     }
     
 	function InsertUulinfo($long_url, $short_url, $password) {
@@ -20,7 +20,7 @@
         $db = new PDO('mysql:host=' . $mysql_dbhost . ';dbname=' . $mysql_dbname . ';port=' . $mysql_dbport, $mysql_dbuser, $mysql_dbpassword);
 		$db ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
 		$db ->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE , PDO::FETCH_ASSOC );
-		$sql_sent = "insert into rnyz_urlinfo ( long_url, short_url, password ) values ( '".$long_url."', '".$short_url."', '".$password."' );";
+		$sql_sent = "insert into " . $mysql_table . " ( long_url, short_url, password ) values ( '".$long_url."', '".$short_url."', '".$password."' );";
 		$db ->exec($sql_sent);
 		$db = null;
 	}
