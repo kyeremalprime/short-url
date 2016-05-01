@@ -8,8 +8,8 @@
 	$sql = $db->prepare('SELECT * FROM ' . $mysql_table . ' WHERE short_url = "'.$short_url.'"');
         $sql->execute();
         $res = $sql->fetch(PDO::FETCH_ASSOC);
-	    $db = null;
-	    return (is_array($res)) ? $res['long_url'] : false;
+	$db = null;
+	return (is_array($res)) ? $res['long_url'] : false;
     }
 
     $long_url = GetLongUrl($short_url);
