@@ -6,4 +6,5 @@
     $mysql_dbuser = "shorturluser";
     $mysql_dbpassword = "shorturlpass";
     $mysql_dbport = "3306";
+    $mysql_table = "rnyz_urlinfo";
 ?>
